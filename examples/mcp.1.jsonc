@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "blockchain0x": {
+      "command": "npx",
+      "args": ["-y", "@blockchain0x/mcp"],
+      "env": {
+        "BLOCKCHAIN0X_API_KEY": "sk_live_...",
+        "BLOCKCHAIN0X_API_BASE_URL": "https://api.blockchain0x.com",
+      },
+    },
+  },
+}

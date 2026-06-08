@@ -1,0 +1,8 @@
+{
+  "error": {
+    "code": "apikey.scope_insufficient",
+    "message": "human-readable, safe to log",
+    "requestId": "req_01HZ...",
+    "details": null
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "name": "blockchain0x",
+  "owner": { "name": "Tosh Labs", "url": "https://github.com/Tosh-Labs" },
+  "metadata": {
+    "description": "Blockchain0x Agent Skill marketplace - one publicly installable skill that teaches an agent the whole agent-wallet integration surface.",
+    "version": "0.1.0-alpha.1"
+  },
+  "plugins": [
+    {
+      "name": "blockchain0x",
+      "source": "./",
+      "description": "Install the Blockchain0x Agent Skill (blockchain0x-wallet) into Claude Code. Bundles the same SKILL.md as the portable skill; no content fork.",
+      "category": "developer-tools"
+    }
+  ]
+}

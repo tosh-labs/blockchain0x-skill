@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "blockchain0x": {
+      "url": "https://mcp.blockchain0x.com/mcp",
+      "headers": { "Authorization": "Bearer sk_live_..." },
+    },
+  },
+}

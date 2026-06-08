@@ -1,0 +1,9 @@
+{
+  "name": "blockchain0x",
+  "version": "0.1.0-alpha.1",
+  "description": "The Blockchain0x Agent Skill: teaches an AI agent to integrate the non-custodial agent-wallet SDK and APIs (key shapes and scopes, USDC payments, x402, webhook verification, the hosted MCP server). Knowledge only, no executable and no secret.",
+  "author": { "name": "Tosh Labs", "url": "https://blockchain0x.com" },
+  "homepage": "https://github.com/Tosh-Labs/blockchain0x-skill",
+  "license": "MIT",
+  "keywords": ["blockchain0x", "agent-skill", "agent-wallet", "usdc", "base", "x402", "payments"]
+}
