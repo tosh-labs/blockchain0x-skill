@@ -1,7 +1,7 @@
 # Blockchain0x Agent Skill (`blockchain0x-wallet`)
 
-[![Agent Skill](https://img.shields.io/badge/Agent_Skill-installable-blueviolet.svg)](https://github.com/Tosh-Labs/blockchain0x-skill)
-[![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-black.svg)](https://github.com/Tosh-Labs/blockchain0x-skill)
+[![Agent Skill](https://img.shields.io/badge/Agent_Skill-installable-blueviolet.svg)](https://github.com/tosh-labs/blockchain0x-skill)
+[![Claude Code plugin](https://img.shields.io/badge/Claude_Code-plugin-black.svg)](https://github.com/tosh-labs/blockchain0x-skill)
 [![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
 **Drop this skill into your AI agent and it knows the whole Blockchain0x integration surface.**
@@ -26,14 +26,14 @@ runtime that reads the open [Agent Skills](https://docs.claude.com/en/docs/agent
 format) - copy the skill into your skills directory:
 
 ```bash
-git clone https://github.com/Tosh-Labs/blockchain0x-skill
+git clone https://github.com/tosh-labs/blockchain0x-skill
 cp -r blockchain0x-skill ~/.claude/skills/blockchain0x-wallet
 ```
 
 Claude Code plugin (one-step install from the marketplace):
 
 ```bash
-/plugin marketplace add Tosh-Labs/blockchain0x-skill
+/plugin marketplace add tosh-labs/blockchain0x-skill
 /plugin install blockchain0x
 ```
 
@@ -84,9 +84,9 @@ the SDK versions and support matrix.
 
 - Landing page: [blockchain0x.com/integrations/skill](https://blockchain0x.com/integrations/skill)
 - Docs: [docs.blockchain0x.com](https://docs.blockchain0x.com)
-- Public mirror (installable): [github.com/Tosh-Labs/blockchain0x-skill](https://github.com/Tosh-Labs/blockchain0x-skill)
+- Public mirror (installable): [github.com/tosh-labs/blockchain0x-skill](https://github.com/tosh-labs/blockchain0x-skill)
 - Agent Skills format: [docs.claude.com/en/docs/agents-and-tools/agent-skills](https://docs.claude.com/en/docs/agents-and-tools/agent-skills)
-- Issues + contributions: [github.com/Tosh-Labs/blockchain0x-app](https://github.com/Tosh-Labs/blockchain0x-app/issues)
+- Issues + contributions: [github.com/tosh-labs/blockchain0x-app](https://github.com/tosh-labs/blockchain0x-app/issues)
 - Changelog: [CHANGELOG.md](./CHANGELOG.md)
 
 ## License

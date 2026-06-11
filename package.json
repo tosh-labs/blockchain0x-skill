@@ -1,6 +1,6 @@
 {
   "name": "@blockchain0x/skill",
-  "version": "0.1.0-alpha.1",
+  "version": "0.1.0-alpha.3",
   "private": true,
   "description": "The Blockchain0x Agent Skill: teaches any AI agent how to integrate the non-custodial agent-wallet SDK/APIs. Knowledge only, no executable, no secret.",
   "keywords": [
@@ -16,11 +16,11 @@
   "homepage": "https://blockchain0x.com/integrations/skill",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Tosh-Labs/blockchain0x-app.git",
+    "url": "git+https://github.com/tosh-labs/blockchain0x-app.git",
     "directory": "integrations/skill"
   },
   "bugs": {
-    "url": "https://github.com/Tosh-Labs/blockchain0x-app/issues"
+    "url": "https://github.com/tosh-labs/blockchain0x-app/issues"
   },
   "license": "MIT"
 }

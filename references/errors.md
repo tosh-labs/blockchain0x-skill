@@ -44,6 +44,19 @@ The SDK throws `ApiKeyError` for any `401` / `403` whose code starts with
 | `apikey.agent_revoked`                | 401  | The bound agent was soft-deleted; the key cascaded to revoked.                                  |
 | `apikey.unsupported_endpoint`         | 403  | API-key-driven API-key or webhook CRUD. Dashboard-only forever.                                 |
 
+## Session vs API-key auth (`auth.invalid_session`)
+
+| Code                   | HTTP | Meaning + fix                                                                                                                                                                                                                                                                                                                                                       |
+| ---------------------- | ---- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `auth.invalid_session` | 401  | The request was NOT accepted as an API-key call and fell back to session (cookie) auth, which you do not have. It does not mean your key is bad. Either the route is dashboard/session-only, or you called a workspace-level route with an agent-scoped (wallet-only) key. Use the agent-scoped endpoint, or a route that supports your key. See "Common pitfalls". |
+
+## Common pitfalls
+
+- **Agent-scoped (wallet-only) keys cannot call workspace-level routes.** Listing or aggregating across all agents (for example "list agents") is a workspace operation. A wallet-only key is fenced to one agent, so those routes return `401 auth.invalid_session`. Read your one agent with the get-by-id route (`agents.get(id)`), not the list route. To span many wallets, use a workspace key.
+- **`auth.invalid_session` is not "bad key".** A genuinely invalid key returns `apikey.invalid`; an expired one `apikey.expired`. `auth.invalid_session` specifically means the route did not run API-key auth for this call. Confirm the endpoint supports API keys and that your bearer token starts with `sk_test_` / `sk_live_`.
+- **Pass the full secret, not the 14-char prefix.** The key secret is shown once at creation; the keys list only shows the prefix. Pasting the prefix yields `apikey.invalid` (or `auth.invalid_session` if it loses the `sk_` shape).
+- **Network is in the key prefix.** `sk_test_` is testnet, `sk_live_` is mainnet. A mismatch is `apikey.network_mismatch`, not a network outage.
+
 ## Webhook verification codes
 
 `webhooks.verify` returns a discriminated result; on failure `result.code` is one
@@ -65,16 +78,19 @@ of the seven dotted codes (`@blockchain0x/node` README). See
 Non-`apikey` envelopes surface as `Blockchain0xError`. The ones an integration
 sees most (`docs/plan/05-api-design.md`):
 
-| Code                           | HTTP | When                                                                 |
-| ------------------------------ | ---- | -------------------------------------------------------------------- |
-| `request.invalid`              | 400  | Body / params failed validation.                                     |
-| `idempotency.conflict`         | 409  | Same `Idempotency-Key` reused with a different request hash.         |
-| `agent.spend_cap_exceeded`     | 422  | Payment would breach the on-chain spend cap.                         |
-| `payment.recipient_sanctioned` | 422  | Recipient failed OFAC screening (generic; never reveals the screen). |
-| `wallet.balance_unavailable`   | 503  | Upstream RPC error; retry later.                                     |
-| `rate_limit.exceeded`          | 429  | Per-resource rate limit; honour `Retry-After`.                       |
-| `network.header_required`      | 400  | `X-Network` missing on a workspace-scoped route.                     |
-| `network.invalid`              | 400  | `X-Network` not in `mainnet` / `testnet`.                            |
+| Code                           | HTTP | When                                                                                                                                                                              |
+| ------------------------------ | ---- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `request.invalid`              | 400  | Body / params failed validation.                                                                                                                                                  |
+| `idempotency.conflict`         | 409  | Same `Idempotency-Key` reused with a different request hash.                                                                                                                      |
+| `agent.spend_cap_exceeded`     | 422  | Payment would breach the on-chain spend cap (or no active permission). Lower the amount, wait for the period reset, or have an owner raise/renew the limit.                       |
+| `payment.requires_step_up`     | 422  | Amount exceeds the large-payment threshold and needs a human passkey step-up; an autonomous agent key cannot complete it (a member approves from the dashboard).                  |
+| `payment.submit_failed`        | 502  | Payment reached the chain but the on-chain submission failed. Ensure the agent wallet is deployed + funded with USDC and its spend permission is registered on-chain, then retry. |
+| `payment.recipient_sanctioned` | 422  | Recipient failed OFAC screening (generic; never reveals the screen).                                                                                                              |
+| `internal.unavailable`         | 503  | A backend dependency for the action is not provisioned (e.g. fee recipient / chain endpoint). Operator/config issue; retry shortly or contact support with the `requestId`.       |
+| `wallet.balance_unavailable`   | 503  | Upstream RPC error; retry later.                                                                                                                                                  |
+| `rate_limit.exceeded`          | 429  | Per-resource rate limit; honour `Retry-After`.                                                                                                                                    |
+| `network.header_required`      | 400  | `X-Network` missing on a workspace-scoped route.                                                                                                                                  |
+| `network.invalid`              | 400  | `X-Network` not in `mainnet` / `testnet`.                                                                                                                                         |
 
 ## Branching pattern
 

@@ -31,6 +31,13 @@ Decision questions (from `docs/concept-api-key-types.md`):
 | `pay_bills`              | Create payments, capped by the agent's spend permission allowance.          |
 | `receive_money`          | Create payment requests / invoices and settle them on-chain.                |
 
+A wallet-only key is fenced to its one agent: it can ONLY call agent-scoped
+routes (get THIS wallet, read its balances/transactions, pay its bills, invoice
+on its behalf). It CANNOT call workspace-level routes such as listing or
+aggregating across all agents - those return `401 auth.invalid_session` (see
+[errors.md](errors.md) "Common pitfalls"), not a scope error. To span wallets or
+list agents, mint a workspace key.
+
 ## Workspace scopes (two; workspace shape only)
 
 | Scope                       | Grants                                                                                   |

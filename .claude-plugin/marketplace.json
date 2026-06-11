@@ -1,9 +1,12 @@
 {
   "name": "blockchain0x",
-  "owner": { "name": "Tosh Labs", "url": "https://github.com/Tosh-Labs" },
+  "owner": {
+    "name": "Tosh Labs",
+    "url": "https://github.com/tosh-labs"
+  },
   "metadata": {
     "description": "Blockchain0x Agent Skill marketplace - one publicly installable skill that teaches an agent the whole agent-wallet integration surface.",
-    "version": "0.1.0-alpha.1"
+    "version": "0.1.0-alpha.3"
   },
   "plugins": [
     {

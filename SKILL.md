@@ -13,7 +13,7 @@ license: MIT
 metadata:
   version: 0.1.0-alpha.1
   homepage: https://blockchain0x.com/integrations/skill
-  source: https://github.com/Tosh-Labs/blockchain0x-skill
+  source: https://github.com/tosh-labs/blockchain0x-skill
 ---
 
 # Blockchain0x agent-wallet integration
